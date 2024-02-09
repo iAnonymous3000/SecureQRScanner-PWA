@@ -11,10 +11,13 @@
 <body>
     <div id="app">
         <h1>Welcome to SecureQRScanner-PWA</h1>
-        <p>Scan QR codes securely and privately.</p>
+        <p>Click the button below to start scanning a QR code.</p>
+        <button id="startScan">Start QR Scan</button>
+        <div id="video-feed-placeholder" style="display:none;">
+            <p>Camera feed will appear here...</p>
+        </div>
         <canvas id="scanner" hidden></canvas>
     </div>
     <script src="js/app.js"></script>
-    <script src="js/register-service-worker.js"></script>
 </body>
 </html>
