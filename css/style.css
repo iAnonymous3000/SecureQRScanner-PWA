@@ -2,13 +2,44 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    text-align: center;
 }
 
 #app {
-    text-align: center;
-    padding: 20px;
+    margin-top: 50px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    display: inline-block;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
 }
 
 canvas {
-    width: 100%;
+    max-width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: block; /* Fixes alignment issues by making it a block element */
+    margin: 20px auto; /* Centers the canvas element */
+}
+
+/* Placeholder styles */
+#video-feed-placeholder {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
 }
