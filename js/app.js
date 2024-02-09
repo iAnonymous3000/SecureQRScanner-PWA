@@ -1,27 +1,32 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.getElementById('startScan').addEventListener('click', function() {
     const video = document.createElement('video');
     const canvasElement = document.getElementById('scanner');
     const canvas = canvasElement.getContext('2d');
+    const startScanButton = document.getElementById('startScan');
+    const videoFeedPlaceholder = document.getElementById('video-feed-placeholder');
 
-    // Try to get access to the camera
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        // Using the rear camera if available, or any camera otherwise
-        const constraints = { video: { facingMode: "environment", width: 640, height: 480 } };
+    // Hide the button and show the placeholder when scan starts
+    startScanButton.style.display = 'none';
+    videoFeedPlaceholder.style.display = 'block';
+    canvasElement.style.display = 'block';
 
-        navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
-            // Set the video stream as the source for the video element
+    // Constraints for the video stream
+    const constraints = { video: { facingMode: "environment" } };
+
+    // Activate the webcam stream
+    navigator.mediaDevices.getUserMedia(constraints)
+        .then(function(stream) {
             video.srcObject = stream;
             video.setAttribute("playsinline", true); // prevent fullscreen on iOS
             video.play();
             requestAnimationFrame(tick);
-        }).catch(function(error) {
-            // Handle the error case
+        })
+        .catch(function(error) {
             console.error("Camera access denied or not available:", error);
             alert("Camera access denied or not available. Please check camera permissions and try again.");
+            videoFeedPlaceholder.style.display = 'none';
+            startScanButton.style.display = 'block';
         });
-    } else {
-        alert("Camera access is not supported by your browser.");
-    }
 
     function tick() {
         if (video.readyState === video.HAVE_ENOUGH_DATA) {
@@ -33,13 +38,14 @@ document.addEventListener('DOMContentLoaded', () => {
             var code = jsQR(imageData.data, imageData.width, imageData.height, {
                 inversionAttempts: "dontInvert",
             });
+
             if (code) {
                 console.log("Found QR code", code.data);
-                // Display code.data in a user-friendly manner
                 alert(`QR Code detected: ${code.data}`);
                 // Stop scanning once a QR code is found
                 video.pause();
                 video.srcObject.getTracks().forEach(track => track.stop());
+                videoFeedPlaceholder.style.display = 'none';
             } else {
                 requestAnimationFrame(tick); // Keep trying to read QR codes
             }
