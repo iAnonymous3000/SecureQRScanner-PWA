@@ -1,17 +1,39 @@
 body, html {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #e9ecef;
     text-align: center;
 }
 
-#app {
-    margin-top: 50px;
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.instructions {
+    font-size: 1.1em;
+}
+
+main {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 button {
-    padding: 10px 20px;
+    padding: 12px 25px;
     font-size: 18px;
     color: white;
     background-color: #007bff;
@@ -19,27 +41,28 @@ button {
     border-radius: 5px;
     cursor: pointer;
     outline: none;
-    display: inline-block;
     margin-top: 20px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 button:hover {
     background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+#video-feed-placeholder {
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
 }
 
 canvas {
+    width: 100%;
     max-width: 100%;
     border: 1px solid #ddd;
     border-radius: 4px;
-    display: block; /* Fixes alignment issues by making it a block element */
-    margin: 20px auto; /* Centers the canvas element */
-}
-
-/* Placeholder styles */
-#video-feed-placeholder {
-    background-color: #000;
-    color: #fff;
-    padding: 10px;
-    border-radius: 4px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
